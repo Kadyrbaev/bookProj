@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./main.js" defer></script>
+    <style>
+        *{
+            margin: 0;
+        }
+        header{
+            background-color: rgb(124, 105, 105);
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 96%;
+            z-index: -1;
+        }
+        span{
+            text-transform: uppercase;
+            box-shadow: 0px 0px 4px 1px;
+            padding: 6px;
+        }
+        main{
+            width: 500px;
+            margin: auto;
+            margin-top: 140px;
+            box-shadow: 0px 0px 8px 0.2px;
+        }
+        h1{
+            box-shadow: 0px 0px 8px 0.2px;
+            text-align: center;
+            padding: 10px;
+        }
+        li{
+            display: flex;
+            /* justify-content: space-between; */
+            padding: 12px;
+            border: 1px solid;
+        }
+        li div{
+            margin-left: 70px;
+        }
+        li img{
+            width: 150px;
+            height: 130px;
+        }
+        button{
+            cursor: pointer;
+        }
+        .modal{
+            width: 300px;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0px 0px 8px 0.2px;
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: rgb(248, 238, 238);
+            border-radius: 14px;
+            display: none;
+
+        }
+        .block-modal{
+            display: block;
+            position: fixed;
+            top: 200px;
+        }
+        input{
+            width: 270px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0px 0px 8px 0.2px;
+        }
+        label{
+            display: inline-block;
+            margin-top: 10px;
+        }
+        p{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .backdrop1{
+            width: 100%;
+            height: 100vh;
+            background-color: red;
+            position: fixed;
+            background: rgb(0, 0, 0, 0.75);
+            /* background-color: black; */
+            /* opacity: 0.6; */
+            top: 0;
+            pointer-events: none;
+            display: none;
+        }
+        .backdrop{
+            display: block;
+        }
+        p button{
+            width: 80px;
+            padding: 6px;
+            margin-left: 24px;
+            box-shadow: 0px 0px 8px 0.2px;
+            border-radius: 10px;
+            border: none;
+        }
+        .add-book{
+            padding: 8px;
+            width: 100px;
+            border-radius: 10px;
+        }
+        ul{
+            padding: 20px;
+        }
+        img{
+            height: 160px;
+        }
+        .text-text{
+            font-size: 24px;
+            text-transform: uppercase;
+            box-shadow: 0px 0px 4px 0.2px;
+            padding: 0px 10px 0px 10px;
+        }
+        li{
+            border: 1px solid;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        li div{
+            border: 1px solid;
+            padding: 0px 40px 0px 20px;
+            text-align: center;
+        }
+        li > div > button{
+            margin-top: 20px;
+        }
+        .sure{
+            display: none;
+        }
+        .delete{
+            display: inline-block;
+            padding: 10px 4px 10px 4px;
+            background-color: rgb(167, 174, 142);
+            position: fixed;
+            top: 200px;
+            left: 180px;
+            /* pointer-events: none; */
+            display: block;
+            z-index: 10;
+        }
+        .delete-modal{
+            border: 1px solid;
+            width: 300px;
+            text-align: center;
+            padding: 20px 0px 20px 0px;
+            background-color: darkgray;
+            border-radius: 20px;
+            position: absolute;
+            left: 430px;
+            top: 200px;
+            z-index: 10;
+            display: none;
+        }
+        .delete-modal div{
+            width: 200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .delete-modal button{
+            width: 60px;
+            padding: 4px;
+        }
+        .block-delete__modal{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="backdrop" class="backdrop1"></div>
+
+    <div id="modal" class="modal">
+        <label for="">Name book</label>
+        <input type="text">
+        <label for="">imgURL</label>
+        <input type="text">
+        <label for="">Price</label>
+        <input type="text">
+        <p>
+            <button id="cancel-modal">Cancel</button>
+            <button id="addbook">Add</button>
+        </p>
+    </div>
+
+    <header>
+        <span>My books</span>
+        <button class="add-book" id="add-books">Add book</button>
+    </header>
+    <main>
+        <h1>
+            BOOKS 
+        </h1>
+        <ul id="ul">
+            <!-- <li>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH5so_MraVaZMu2D8AoAT-ejVac5YNQc87vw&usqp=CAU" alt="surot">
+                <div class="text-text">
+                    <p>Harry Potter</p>
+                    <p>500</p>
+                    <button>Delete<button>
+                </div>
+            </li> -->
+           
+        </ul>
+    </main>
+    <div id="delete-modal" class="delete-modal">
+        <h3>Are you sure want to delete?</h3>
+        <div>
+            <button id="no-delete">No</button>
+            <button id="yes-delete">Yes</button>
+        </div>
+    </div>
+</body>
+</html>
